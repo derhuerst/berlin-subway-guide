@@ -1,0 +1,10 @@
+{
+	"name":        "berlin-subway-guide",
+	"description": "A visual guide to Berlin subway stations.",
+	"version":     "0.1.0",
+	"author":      "Jannis R <mail@jannisr.de>",
+	"homepage":    "https://github.com/derhuerst/berlin-subway-guide",
+	"repository":  "derhuerst/berlin-subway-guide",
+	"license":     "CC-BY-SA-3.0",
+	"engines":     {"node": ">=4"}
+}
