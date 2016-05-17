@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Berlin Subway Guide</title>
+	<meta charset="utf-8">
+	<meta name="description" content="A visual guide to Berlin subway stations.">
+	<meta name="author" content="Jannis R <mail@jannisr.de>">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<style>
+		body {
+			margin: 0 3vw; padding: 0;
+			font-size: 120%; font-size: calc(.7em + 1vw);
+			font-family: 'Helvetica Neue', Helvetica, sans-serif }
+
+		h1 { text-align: center; font-size: 2em }
+		h2 { font-size: 1em }
+		a { text-decoration: none; color: #2980b9 }
+		a:hover { text-decoration: underline }
+		ul { list-style: none; padding: 0 }
+		img { max-width: 100% }
+
+		ul#stations { max-width: 20em; margin: 0 auto }
+		footer { margin-top: 6rem; text-align: center }
+		span.love { font-size: 120%; color: #e74c3c }
+	</style>
+</head>
+<body>
+	<h1>Berlin Subway Guide</h1>
+	<ul id="stations">
+		<li class="station">
+			<h2>U Adenauerplatz</h2>
+			<img src="./photos/adenauerplatz.jpg" alt="U Adenauerplatz"/>
+		</li>
+		<li class="station">
+			<h2>U Leopoldplatz</h2>
+			<img src="./photos/leopoldplatz.jpg" alt="U Leopoldplatz"/>
+		</li>
+	</ul>
+	<footer>
+		<p>made with <span class="love">❤</span> by <a href="https://jannisr.de/">Jannis R</a></p>
+	</footer>
+</body>
