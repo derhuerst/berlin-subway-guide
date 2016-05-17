@@ -33,13 +33,13 @@ const footer = (_) => h.footer({}, [
 const index = (platforms) => h.ul(null, platforms.map((p) =>
 	h.li(null, [
 		h.a({href: '#' + slug(p.station + '-' + p.line)}, [
-			`${shorten(p.station)} – ${p.line}`
+			p.line + ' – ' + shorten(p.station)
 		])
 	])))
 
 const platform = (p) => h.li(
 	{class: 'platform', id: slug(p.station + '-' + p.line)}, [
-	h.h2({}, `${shorten(p.station)} – ${p.line}`),
+	h.h2({}, p.line + ' – ' + shorten(p.station)),
 	h.img({src: p.img, alt: `photo of ${shorten(p.station)}`})
 ])
 

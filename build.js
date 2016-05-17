@@ -16,6 +16,13 @@ fs.symlinkSync(photos.dir, path.join(__dirname, 'photos'))
 
 
 
+const sortPlatforms = (a, b) =>
+	  (a.line > b.line) ?  1
+	: (a.line < b.line) ? -1
+	:                      0
+
+
+
 const _ = pick(pkg, ['title', 'description', 'author'])
 
 const platforms = []
@@ -44,7 +51,7 @@ Object.keys(photos.list).forEach((id) => {
 q.start((err) => {
 	if (err) return console.error(err.message)
 
-	const html = tpl(_, platforms)
+	const html = tpl(_, platforms.sort(sortPlatforms))
 	const dest = path.join(__dirname, 'index.html')
 	fs.writeFile(dest, html, (err) => {
 		if (err) return console.error(err.stack)
