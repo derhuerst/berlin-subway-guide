@@ -11,6 +11,14 @@
 	"dependencies": {
 		"pithy": "^0.0.4",
 		"vbb-short-station-name": "^0.1",
-		"slugg": "^1"
+		"slugg": "^1",
+		"lodash.pick": "^4.2.1",
+		"vbb-station-photos": "^0.1",
+		"queue": "^4",
+		"vbb-stations": "^0.4"
+	},
+	"scripts": {
+		"build":   "node build.js",
+		"install": "npm run build"
 	}
 }
