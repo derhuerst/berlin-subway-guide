@@ -34,9 +34,8 @@ Object.keys(photos.list).forEach((id) => {
 		q.push((next) =>
 			Promise.all([
 				lookup(true, +id),
-				flickr('ingolfbln', set.label, 'z')
-			]).catch(next)
-			.then((all) => {
+				flickr(set.label[0], set.label[1], 'z')
+			]).then((all) => {
 
 				platforms.push({
 					  station: all[0][0].name
@@ -44,19 +43,21 @@ Object.keys(photos.list).forEach((id) => {
 					, img:     all[1]
 				})
 
+				console.info(line, all[0][0].name, '✓')
 				next()
-			}).catch(next))
+			}, next).catch(next))
 	})
 })
 
-q.start((err) => {
-	if (err) return console.error(err.stack)
-
+// q.on('error', (err) => {
+// 	console.error(err.message)
+// 	q.start()
+// })
+q.start(() => {
 	const html = tpl(_, platforms.sort(sortPlatforms))
 	const dest = path.join(__dirname, 'index.html')
 	fs.writeFile(dest, html, (err) => {
 		if (err) return console.error(err.stack)
 		console.log('done')
 	})
-
 })
