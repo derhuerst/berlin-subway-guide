@@ -21,6 +21,13 @@ const head = (_) => h.head(null, [
 
 const footer = (_) => h.footer({}, [
 	h.p({}, [
+		  'Thanks to '
+		, h.a({href: 'https://www.flickr.com/photos/ingolfbln'}, [
+			h.i(null, 'ingolfbln')
+		])
+		, ' for the data!'
+	]),
+	h.p({}, [
 		  'made with '
 		, h.span('.love', '❤')
 		, ' by '
