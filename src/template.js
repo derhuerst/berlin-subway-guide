@@ -37,25 +37,51 @@ const footer = (_) => h.footer({}, [
 
 
 
-const index = (platforms) => h.ul(null, platforms.map((p) =>
-	h.li(null, [
-		h.a({href: '#' + slug(p.station + '-' + p.line)}, [
-			p.line + ' – ' + shorten(p.station)
-		])
-	])))
-
-const platform = (p) => h.li(
-	{class: 'platform', id: slug(p.station + '-' + p.line)}, [
-	h.h2({}, p.line + ' – ' + shorten(p.station)),
-	h.img({src: p.img, alt: `photo of ${shorten(p.station)}`})
+const link = (platform) => h.li(null, [
+	h.a({
+		href: '#' + slug(platform.station + '-' + platform.line)
+	}, [shorten(platform.station)])
 ])
+
+const index = (platforms) => {
+	const r = []
+	for (let line in platforms) {
+		r.push(h.h2(null, line))
+		r.push(h.ul(null, platforms[line].map(link)))
+	}
+	return h.div(null, r)
+}
+
+
+
+const platform = (platform) => h.li({
+	  class: 'platform'
+	, id:    slug(platform.station + '-' + platform.line)
+}, [
+	h.h3(null, shorten(platform.station)),
+	h.img({
+		  src: platform.img
+		, alt: `photo of ${shorten(platform.station)}`
+	})
+])
+
+const list = (platforms) => {
+	const r = []
+	for (let line in platforms) {
+		r.push(h.h2(null, line))
+		r.push(h.ul(null, platforms[line].map(platform)))
+	}
+	return h.div(null, r)
+}
+
+
 
 const page = (_, platforms) => `<!DOCTYPE html>` + h.html(null, [
 	head(_),
 	h.body(null, [
 		  h.h1({}, 'Berlin Subway Guide')
 		, index(platforms)
-		, h.ul('#platforms', platforms.map(platform))
+		, list(platforms)
 		, footer(_)
 	])
 ])

@@ -13,16 +13,9 @@ const tpl    = require('./src/template')
 
 
 
-const sortPlatforms = (a, b) =>
-	  (a.line > b.line) ?  1
-	: (a.line < b.line) ? -1
-	:                      0
-
-
-
 const _ = pick(pkg, ['title', 'description', 'author'])
 
-const platforms = []
+let platforms = {}
 const q = queue()
 q.concurrency = 5
 
@@ -31,13 +24,14 @@ Object.keys(photos.list).forEach((id) => {
 	Object.keys(station).forEach((line) => {
 		const set = station[line]
 		if (!set.label) return
+		if (!(line in platforms)) platforms[line] = []
 		q.push((next) =>
 			Promise.all([
 				lookup(true, +id),
 				flickr(set.label[0], set.label[1], 'z')
 			]).then((all) => {
 
-				platforms.push({
+				platforms[line].push({
 					  station: all[0][0].name
 					, line:    line
 					, img:     all[1]
@@ -54,7 +48,7 @@ Object.keys(photos.list).forEach((id) => {
 // 	q.start()
 // })
 q.start(() => {
-	const html = tpl(_, platforms.sort(sortPlatforms))
+	const html = tpl(_, platforms)
 	const dest = path.join(__dirname, 'index.html')
 	fs.writeFile(dest, html, (err) => {
 		if (err) return console.error(err.stack)
