@@ -3,6 +3,8 @@
 const h       = require('pithy')
 const fs      = require('fs')
 const path    = require('path')
+const sortBy = require('lodash.sortby')
+const tokenize = require('vbb-tokenize-station')
 const shorten = require('vbb-short-station-name')
 const slug    = require('slugg')
 
@@ -37,6 +39,10 @@ const footer = (_) => h.footer({}, [
 
 
 
+const sortPlatform = (p) => tokenize(p.station)
+	.filter((t) => t !== 'ubahn' && t !== 'sbahn')
+	.join(' ')
+
 const link = (platform) => h.li(null, [
 	h.a({
 		href: '#' + slug(platform.station + '-' + platform.line)
@@ -45,9 +51,11 @@ const link = (platform) => h.li(null, [
 
 const index = (platforms) => {
 	const r = []
-	for (let line in platforms) {
+	const lines = Object.keys(platforms).sort()
+	for (let line of lines) {
 		r.push(h.h2(null, line))
-		r.push(h.ul(null, platforms[line].map(link)))
+		const p = sortBy(platforms[line], sortPlatform)
+		r.push(h.ul(null, p.map(link)))
 	}
 	return h.div(null, r)
 }
@@ -67,11 +75,12 @@ const platform = (platform) => h.li({
 
 const list = (platforms) => {
 	const r = []
-	for (let line in platforms) {
-		r.push(h.h2(null, line))
-		r.push(h.ul(null, platforms[line].map(platform)))
+	const lines = Object.keys(platforms).sort()
+	for (let line of lines) {
+		const ps = sortBy(platforms[line], sortPlatform)
+		for (let p of ps) r.push(platform(p))
 	}
-	return h.div(null, r)
+	return h.ul('#platforms', r)
 }
 
 
