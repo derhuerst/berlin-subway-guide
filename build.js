@@ -28,7 +28,7 @@ Object.keys(photos.list).forEach((id) => {
 		q.push((next) =>
 			Promise.all([
 				lookup(true, +id),
-				flickr(set.label[0], set.label[1], 'z')
+				flickr(set.label[0], set.label[1], 'q')
 			]).then((all) => {
 
 				platforms[line].push({

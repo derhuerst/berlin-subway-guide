@@ -1,14 +1,6 @@
-body {
-	margin: 0 auto; padding: 0 2vw; max-width: 20em;
-	font-size: 120%; font-size: calc(.7em + 1vw);
-	font-family: 'Helvetica Neue', Helvetica, sans-serif }
+body { margin: 0 }
 
-h1 { text-align: center; font-size: 2em }
-h2 { font-size: 1em }
-a { text-decoration: none; color: #2980b9 }
-a:hover { text-decoration: underline }
-img { max-width: 100% }
-
-ul#platforms { padding: 0; list-style: none }
-footer { margin-top: 6rem; text-align: center }
-span.love { font-size: 120%; color: #e74c3c }
+ul { display: flex; margin: 0; padding: 0;
+	list-style: none; flex-wrap: wrap }
+ul li { display: inline-block; max-width: 10vw; max-height: 10vw }
+ul li img { max-width: 100% }

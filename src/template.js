@@ -23,13 +23,6 @@ const head = (_) => h.head(null, [
 
 const footer = (_) => h.footer({}, [
 	h.p({}, [
-		  'Thanks to '
-		, h.a({href: 'https://www.flickr.com/photos/ingolfbln'}, [
-			h.i(null, 'ingolfbln')
-		])
-		, ' for the data!'
-	]),
-	h.p({}, [
 		  'made with '
 		, h.span('.love', '❤')
 		, ' by '
@@ -43,30 +36,10 @@ const sortPlatform = (p) => tokenize(p.station)
 	.filter((t) => t !== 'ubahn' && t !== 'sbahn')
 	.join(' ')
 
-const link = (platform) => h.li(null, [
-	h.a({
-		href: '#' + slug(platform.station + '-' + platform.line)
-	}, [shorten(platform.station)])
-])
-
-const index = (platforms) => {
-	const r = []
-	const lines = Object.keys(platforms).sort()
-	for (let line of lines) {
-		r.push(h.h2(null, line))
-		const p = sortBy(platforms[line], sortPlatform)
-		r.push(h.ul(null, p.map(link)))
-	}
-	return h.div(null, r)
-}
-
-
-
 const platform = (platform) => h.li({
 	  class: 'platform'
 	, id:    slug(platform.station + '-' + platform.line)
 }, [
-	h.h3(null, shorten(platform.station)),
 	h.img({
 		  src: platform.img
 		, alt: `photo of ${shorten(platform.station)}`
@@ -87,12 +60,7 @@ const list = (platforms) => {
 
 const page = (_, platforms) => `<!DOCTYPE html>` + h.html(null, [
 	head(_),
-	h.body(null, [
-		  h.h1({}, 'Berlin Subway Guide')
-		, index(platforms)
-		, list(platforms)
-		, footer(_)
-	])
+	h.body(null, [list(platforms)])
 ])
 
 
