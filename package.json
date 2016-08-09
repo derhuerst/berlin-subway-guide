@@ -9,14 +9,14 @@
 	"license":     "CC-BY-SA-3.0",
 	"engines":     {"node": ">=4"},
 	"dependencies": {
-		"pithy": "^0.0.4",
-		"vbb-short-station-name": "^0.1",
-		"slugg": "^1",
+		"vbb-station-photos": "derhuerst/vbb-station-photos",
+		"vbb-stations": "^2",
 		"lodash.pick": "^4.2.1",
-		"vbb-station-photos": "^0.1",
-		"flickr-photo-url": "^0.1",
-		"queue": "^4",
-		"vbb-stations": "^0.4"
+		"pithy": "^0.0.4",
+		"lodash.sortby": "^4.6.1",
+		"vbb-tokenize-station": "^0.2",
+		"vbb-short-station-name": "^0.1",
+		"slugg": "^1"
 	},
 	"scripts": {
 		"build":   "rm photos/*.jpg; node build.js",
