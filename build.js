@@ -24,8 +24,8 @@ for (let id in byStation) {
 
 		const src = photos(id, line, 'label')
 		if (!src) continue
-		const base = path.basename(src)
-		const dest = path.join(__dirname, 'photos', base)
+		const base = path.join('photos', path.basename(src))
+		const dest = path.join(__dirname, base)
 		fs.linkSync(src, dest)
 
 		if (!(line in platforms)) platforms[line] = []
