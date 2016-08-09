@@ -19,7 +19,7 @@
 		"vbb-stations": "^0.4"
 	},
 	"scripts": {
-		"build":   "node build.js",
+		"build":   "rm photos/*.jpg; node build.js",
 		"install": "npm run build"
 	}
 }
