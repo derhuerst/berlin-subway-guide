@@ -9,7 +9,7 @@
 	"license":     "CC-BY-SA-3.0",
 	"engines":     {"node": ">=4"},
 	"dependencies": {
-		"vbb-station-photos": "derhuerst/vbb-station-photos",
+		"vbb-station-photos": "derhuerst/vbb-station-photos#fix-npm",
 		"vbb-stations": "^2",
 		"lodash.pick": "^4.2.1",
 		"pithy": "^0.0.4",
