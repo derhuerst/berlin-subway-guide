@@ -15,7 +15,7 @@ const styles = fs.readFileSync(path.join(__dirname, 'styles.css'))
 const head = (_) => h.head(null, [
 	  h.meta({charset: 'utf-8'})
 	, h.title(null, _.title)
-	, h.meta({name: 'author', content: _.author})
+	, h.meta({name: 'author', content: _.author.name})
 	, h.meta({name: 'description', content: _.description})
 	, h.meta({name: 'viewport', content: 'width=device-width,initial-scale=1'})
 	, h.style({type: 'text/css'}, [new h.SafeString(styles.toString())])
@@ -33,7 +33,7 @@ const footer = (_) => h.footer({}, [
 		  'made with '
 		, h.span('.love', '❤')
 		, ' by '
-		, h.a({href: 'https://jannisr.de/'}, _.author)
+		, h.a({href: _.author.url}, _.author.name)
 	])
 ])
 
