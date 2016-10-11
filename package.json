@@ -11,9 +11,9 @@
 	"dependencies": {
 		"vbb-station-photos": "derhuerst/vbb-station-photos",
 		"vbb-stations": "^2",
-		"lodash.pick": "^4.2.1",
+		"lodash.pick": "^4.4",
 		"pithy": "^0.0.4",
-		"lodash.sortby": "^4.6.1",
+		"lodash.sortby": "^4.7",
 		"vbb-tokenize-station": "^0.2",
 		"vbb-short-station-name": "^0.1",
 		"slugg": "^1"
