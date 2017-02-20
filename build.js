@@ -15,7 +15,7 @@ let platforms = {}
 
 const byStation = photos.list
 for (let id in byStation) {
-	const station = lookup(+id)[0]
+	const station = lookup(id)[0]
 	if (!station) continue
 	const byLine = byStation[id]
 	for (let line in byLine) {
