@@ -1,25 +1,31 @@
 {
-	"name":        "berlin-subway-guide",
-	"title":       "Berlin Subway Guide",
+	"name": "berlin-subway-guide",
+	"title": "Berlin Subway Guide",
 	"description": "A visual guide to Berlin subway stations.",
-	"version":     "0.1.0",
-	"author":      {"name": "Jannis R", "email": "mail@jannisr.de>", "url": "https://jannisr.de/"},
-	"homepage":    "https://github.com/derhuerst/berlin-subway-guide",
-	"repository":  "derhuerst/berlin-subway-guide",
-	"license":     "CC-BY-SA-3.0",
-	"engines":     {"node": ">=4"},
+	"version": "0.1.0",
+	"author": {
+		"name": "Jannis R",
+		"email": "mail@jannisr.de>",
+		"url": "https://jannisr.de/"
+	},
+	"homepage": "https://github.com/derhuerst/berlin-subway-guide",
+	"repository": "derhuerst/berlin-subway-guide",
+	"license": "CC-BY-SA-3.0",
+	"engines": {
+		"node": ">=4"
+	},
 	"dependencies": {
-		"vbb-station-photos": "derhuerst/vbb-station-photos",
-		"vbb-stations": "^2",
 		"lodash.pick": "^4.4",
-		"pithy": "^0.0.4",
 		"lodash.sortby": "^4.7",
-		"vbb-tokenize-station": "^0.2",
+		"pithy": "^0.0.4",
+		"slugg": "^1",
 		"vbb-short-station-name": "^0.1",
-		"slugg": "^1"
+		"vbb-station-photos": "^1.2.0",
+		"vbb-stations": "^5.5.0",
+		"vbb-tokenize-station": "^0.2"
 	},
 	"scripts": {
-		"build":   "rm photos/*.jpg; node build.js",
+		"build": "rm photos/*.jpg; node build.js",
 		"install": "npm run build"
 	}
 }

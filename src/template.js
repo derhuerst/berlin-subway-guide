@@ -18,6 +18,11 @@ const head = (_) => h.head(null, [
 	, h.meta({name: 'author', content: _.author.name})
 	, h.meta({name: 'description', content: _.description})
 	, h.meta({name: 'viewport', content: 'width=device-width,initial-scale=1'})
+	, h.link({rel: 'profile', href: 'http://osprotocol.com'})
+	, h.meta({property: 'os:repo', content: 'https://github.com/derhuerst/berlin-subway-guide'})
+	, h.meta({property: 'os:rsc_type', content: 'git'})
+	, h.meta({property: 'os:src', content: 'https://github.com/derhuerst/berlin-subway-guide'})
+	, h.meta({property: 'os:issue', content: 'https://github.com/derhuerst/berlin-subway-guide/issues'})
 	, h.style({type: 'text/css'}, [new h.SafeString(styles.toString())])
 ])
 
@@ -62,16 +67,24 @@ const index = (platforms) => {
 
 
 
-const platform = (platform) => h.li({
+const platform = (platform) => {
+	console.error(platform.link)
+	return h.li({
 	  class: 'platform'
 	, id:    slug(platform.station + '-' + platform.line)
 }, [
 	h.h3(null, shorten(platform.station)),
-	h.img({
-		  src: platform.img
-		, alt: `photo of ${shorten(platform.station)}`
-	})
+	h.a({
+		href: platform.link,
+		target: '_blank'
+	}, [
+		h.img({
+			  src: platform.img
+			, alt: `photo of ${shorten(platform.station)}`
+		})
+	])
 ])
+}
 
 const list = (platforms) => {
 	const r = []

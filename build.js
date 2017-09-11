@@ -9,7 +9,13 @@ const pick    = require('lodash.pick')
 const pkg    = require('./package.json')
 const tpl    = require('./src/template')
 
-
+const generateLink = (data) => {
+	if (data[0] === 'flickr') {
+		return `https://www.flickr.com/photos/${data[1]}/${data[2]}/`
+	} if (data[0] === 'commons') {
+		return `https://commons.wikimedia.org/wiki/File:${data[1]}`
+	} else return null
+}
 
 let platforms = {}
 
@@ -29,7 +35,12 @@ for (let id in byStation) {
 		fs.linkSync(src, dest)
 
 		if (!(line in platforms)) platforms[line] = []
-		platforms[line].push({station: station.name, line, img: base})
+		platforms[line].push({
+			station: station.name,
+			line,
+			img: base,
+			link: generateLink(set.label)
+		})
 	}
 }
 
