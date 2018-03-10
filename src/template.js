@@ -68,7 +68,6 @@ const index = (platforms) => {
 
 
 const platform = (platform) => {
-	console.error(platform.link)
 	return h.li({
 	  class: 'platform'
 	, id:    slug(platform.station + '-' + platform.line)
