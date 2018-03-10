@@ -20,12 +20,12 @@
 		"pithy": "^0.0.4",
 		"slugg": "^1",
 		"vbb-short-station-name": "^0.1",
-		"vbb-station-photos": "^1.2.0",
+		"vbb-station-photos": "^2.0.1",
 		"vbb-stations": "^5.5.0",
 		"vbb-tokenize-station": "^0.2"
 	},
 	"scripts": {
-		"build": "rm photos/*.jpg; node build.js",
+		"build": "node build.js",
 		"install": "npm run build"
 	}
 }

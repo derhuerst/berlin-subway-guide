@@ -79,7 +79,7 @@ const platform = (platform) => {
 		target: '_blank'
 	}, [
 		h.img({
-			  src: platform.img
+			  src: platform.url
 			, alt: `photo of ${shorten(platform.station)}`
 		})
 	])

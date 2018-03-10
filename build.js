@@ -1,8 +1,9 @@
 'use strict'
 
-const path    = require('path')
-const photos  = require('vbb-station-photos')
-const lookup  = require('vbb-stations')
+const rawPhotos = require('vbb-station-photos/photos')
+const photos = require('vbb-station-photos/medium.json')
+const getStations = require('vbb-stations')
+const path = require('path')
 const fs      = require('fs')
 const pick    = require('lodash.pick')
 
@@ -19,27 +20,24 @@ const generateLink = (data) => {
 
 let platforms = {}
 
-const byStation = photos.list
+const byStation = photos
 for (let id in byStation) {
-	const station = lookup(id)[0]
+	const station = getStations(id)[0]
 	if (!station) continue
 	const byLine = byStation[id]
 	for (let line in byLine) {
-		const set = byLine[line]
-		if (!set.label) continue
+		const byPerspective = byLine[line]
+		if (!byPerspective.label) continue
 
-		const src = photos(id, line, 'label')
-		if (!src) continue
-		const base = path.join('photos', path.basename(src))
-		const dest = path.join(__dirname, base)
-		fs.linkSync(src, dest)
+		const url = photos[id][line].label
+		if (!url) continue
 
 		if (!(line in platforms)) platforms[line] = []
 		platforms[line].push({
 			station: station.name,
 			line,
-			img: base,
-			link: generateLink(set.label)
+			url,
+			link: generateLink(rawPhotos[id][line].label)
 		})
 	}
 }
