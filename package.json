@@ -16,14 +16,15 @@
 		"node": ">=4"
 	},
 	"dependencies": {
+		"h2ml": "^1.1.0",
 		"lodash.pick": "^4.4",
 		"lodash.sortby": "^4.7",
-		"pithy": "^0.0.4",
 		"slugg": "^1",
 		"vbb-short-station-name": "^0.1",
 		"vbb-station-photos": "^2.0.1",
 		"vbb-stations": "^5.5.0",
-		"vbb-tokenize-station": "^0.2"
+		"vbb-tokenize-station": "^0.2",
+		"xss": "^0.3.7"
 	},
 	"scripts": {
 		"build": "node build.js"
