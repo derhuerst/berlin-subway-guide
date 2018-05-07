@@ -1,7 +1,8 @@
 'use strict'
 
 const rawPhotos = require('vbb-station-photos/photos')
-const photos = require('vbb-station-photos/medium.json')
+const smallPhotos = require('vbb-station-photos/small.json')
+const largePhotos = require('vbb-station-photos/large.json')
 const getStations = require('vbb-stations')
 const path = require('path')
 const fs      = require('fs')
@@ -20,7 +21,7 @@ const generateLink = (data) => {
 
 let platforms = {}
 
-const byStation = photos
+const byStation = rawPhotos
 for (let id in byStation) {
 	const station = getStations(id)[0]
 	if (!station) continue
@@ -29,15 +30,18 @@ for (let id in byStation) {
 		const byPerspective = byLine[line]
 		if (!byPerspective.label) continue
 
-		const url = photos[id][line].label
-		if (!url) continue
+		const smallUrl = smallPhotos[id][line].label
+		const largeUrl = largePhotos[id][line].label
+		const link = generateLink(rawPhotos[id][line].label)
+		if (!smallUrl || !largeUrl || !link) continue
 
 		if (!(line in platforms)) platforms[line] = []
 		platforms[line].push({
 			station: station.name,
 			line,
-			url,
-			link: generateLink(rawPhotos[id][line].label)
+			smallUrl,
+			largeUrl,
+			link
 		})
 	}
 }

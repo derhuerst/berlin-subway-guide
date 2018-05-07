@@ -76,10 +76,21 @@ const platform = (platform) => {
 			href: encodeURI(platform.link),
 			target: '_blank'
 		}, [
-			h('img', {
-				src: encodeURI(platform.url),
-				alt: `photo of ${secure(shorten(platform.station))}`
-			})
+			h('picture', {
+				title: `photo of ${secure(shorten(platform.station))}`
+			}, [
+				h('source', {
+					srcset: encodeURI(platform.smallUrl)
+				}),
+				h('source', {
+					srcset: encodeURI(platform.largeUrl),
+					media: '(min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)'
+				}),
+				h('img', { // fallback
+					src: platform.smallUrl,
+					alt: `photo of ${secure(shorten(platform.station))}`
+				})
+			])
 		])
 	])
 }
