@@ -94,6 +94,13 @@ const list = (platforms) => {
 	return h('ul', {id: 'platforms'}, r)
 }
 
+const serviceWorker = h('script', {}, `
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/service-worker.js')
+	.catch(console.error)
+}
+`)
+
 const page = (_, platforms) => {
 	return `<!DOCTYPE html>` +
 	h('html', {}, [
@@ -102,7 +109,8 @@ const page = (_, platforms) => {
 			h('h1', {}, 'Berlin Subway Guide'),
 			index(platforms),
 			list(platforms),
-			footer(_)
+			footer(_),
+			serviceWorker
 		])
 	])
 }
