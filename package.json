@@ -15,15 +15,15 @@
 	"engines": {
 		"node": ">=4"
 	},
-	"dependencies": {
+	"devDependencies": {
 		"h2ml": "^1.1.0",
 		"lodash.pick": "^4.4",
 		"lodash.sortby": "^4.7",
 		"slugg": "^1",
-		"vbb-short-station-name": "^0.1",
+		"vbb-short-station-name": "^1.0.1",
 		"vbb-station-photos": "^2.0.1",
-		"vbb-stations": "^5.5.0",
-		"vbb-tokenize-station": "^0.2",
+		"vbb-stations": "^6.4.1",
+		"vbb-tokenize-station": "^0.3.0",
 		"xss": "^0.3.7"
 	},
 	"scripts": {
