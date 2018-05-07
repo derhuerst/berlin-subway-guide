@@ -23,21 +23,35 @@ let platforms = {}
 const byStation = photos
 for (let id in byStation) {
 	const station = getStations(id)[0]
-	if (!station) continue
+	if (!station) {
+		console.error('unknown statoin ' + id)
+		continue
+	}
 	const byLine = byStation[id]
 	for (let line in byLine) {
 		const byPerspective = byLine[line]
-		if (!byPerspective.label) continue
+		if (!byPerspective.label) {
+			console.error(`no label photo for ${id} ${line}`)
+			continue
+		}
 
 		const url = photos[id][line].label
-		if (!url) continue
+		if (!url) {
+			console.error(`no URL for ${id} ${line}`)
+			continue
+		}
+		const link = generateLink(rawPhotos[id][line].label)
+		if (!link) {
+			console.error(`no link for ${id} ${line}`)
+			continue
+		}
 
 		if (!(line in platforms)) platforms[line] = []
 		platforms[line].push({
 			station: station.name,
 			line,
 			url,
-			link: generateLink(rawPhotos[id][line].label)
+			link
 		})
 	}
 }
